@@ -11,9 +11,9 @@ services:
     image: reg.oncolog.ir/rustdesk-server-pro
     command: hbbs -r 127.0.0.1:21117
     volumes:
-      type: volume
-      source: rustdesk
-      target: /root
+      - type: volume
+        source: rustdesk
+        target: /root
     # networks:
     #   - rustdesk-net
     depends_on:
@@ -30,9 +30,9 @@ services:
     image: reg.oncolog.ir/rustdesk-server-pro
     command: hbbr
     volumes:
-      type: volume
-      source: rustdesk
-      target: /root
+      - type: volume
+        source: rustdesk
+        target: /root
     # networks:
     #   - rustdesk-net
     restart: unless-stopped

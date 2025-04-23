@@ -1,46 +1,39 @@
 services:
   hbbs:
-    # container_name: hbbs
-    network_mode: host
-    # ports:
-    #   - 21115:21115
-    #   - 21116:21116
-    #   - 21116:21116/udp
-    #   - 21118:21118
-    # networks:
-    #   - rustdesk-net
-    runtime: youki
-    image: reg.oncolog.ir/rustdesk-server-pro
-    command: hbbs -r 127.0.0.1:21117
+    container_name: rustdesk
+    ports:
+      # - 21114:21114
+      - 21115:21115
+      - 21116:21116
+      - 21116:21116/udp
+      # - 21118:21118
+    networks:
+      - rustdesk
+    image: rustdesk/rustdesk-server
+    command: hbbs -r hbbr:21117
     volumes:
-      - type: volume
-        source: rustdesk
-        target: /root
+      - rustdesk:/root
     depends_on:
       - hbbr
     restart: unless-stopped
 
   hbbr:
-    # container_name: hbbr
-    network_mode: host
+    container_name: rustdesk-relay
     # ports:
     #   - 21117:21117
-    #   - 21119:21119
-    # networks:
-    #   - rustdesk-net
-    runtime: youki
-    image: reg.oncolog.ir/rustdesk-server-pro
+      # - 21119:21119
+    networks:
+      - rustdesk
+    image: rustdesk/rustdesk-server
     command: hbbr
     volumes:
-      - type: volume
-        source: rustdesk
-        target: /root
+      - rustdesk:/root
     restart: unless-stopped
 
 volumes:
   rustdesk:
-    external: false
+    name: rustdesk
 
-# networks:
-#   rustdesk-net:
-#     external: false
+networks:
+  rustdesk:
+    name: rustdesk

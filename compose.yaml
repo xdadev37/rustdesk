@@ -6,7 +6,7 @@ services:
       - 21115:21115
       - 21116:21116
       - 21116:21116/udp
-      # - 21118:21118
+      - 21118:21118
     networks:
       - rustdesk
     image: rustdesk/rustdesk-server

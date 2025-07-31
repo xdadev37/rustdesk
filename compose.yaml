@@ -19,8 +19,8 @@ services:
 
   hbbr:
     container_name: rustdesk-relay
-    # ports:
-    #   - 21117:21117
+    ports:
+      - 21117:21117
       # - 21119:21119
     networks:
       - rustdesk
